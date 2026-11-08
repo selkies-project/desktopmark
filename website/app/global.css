@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/generated/spacious.css';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+#fd-spacious-layout {
+  --fd-page-width: 1200px;
+}
+
+#nd-page table {
+  width: 100%;
+  table-layout: auto;
+  font-size: 0.875rem;
+}
+
+#nd-page td,
+#nd-page th {
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
+#nd-page td:first-child code {
+  white-space: nowrap;
+}

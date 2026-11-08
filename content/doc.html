@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>dm-wheel</title>
+<style>
+  html, body { margin: 0; background: #fbfbf8; font: 15px/1.45 "DejaVu Sans", sans-serif; color: #202020; }
+  #marker { position: fixed; left: 0; top: 0; width: 160px; height: 64px; display: grid;
+            grid-template-columns: repeat(10, 16px); grid-template-rows: repeat(4, 16px); z-index: 9; }
+  #marker div { width: 16px; height: 16px; background: #000; }
+  main { padding: 80px 40px 0 40px; max-width: 1100px; }
+</style></head>
+<body>
+<div id="marker"></div>
+<main id="doc"></main>
+<script>
+const words = 'desktop stream window frame latency encoder pixel the of and a to in is that for browser render scroll text chroma motion vector packet glyph kernel buffer cursor display codec'.split(' ');
+let s = 777, html = '';
+const rnd = () => (s = (s * 1103515245 + 12345) >>> 0) >>> 16;
+for (let i = 0; i < 1500; i++) {
+  let p = '';
+  for (let j = 0; j < 30; j++) p += words[rnd() % words.length] + ' ';
+  html += `<p>${p}</p>`;
+}
+document.getElementById('doc').innerHTML = html;
+const cells = [];
+for (let b = 0; b < 40; b++) cells.push(document.getElementById('marker').appendChild(document.createElement('div')));
+let count = 0, pending = false;
+function stamp() {
+  const v = (BigInt(count & 0xffff) << 24n) | BigInt(Date.now() & 0xffffff);
+  for (let b = 0; b < 40; b++) cells[b].style.background = ((v >> BigInt(b)) & 1n) ? '#fff' : '#000';
+  pending = false;
+}
+addEventListener('scroll', () => { count++; if (!pending) { pending = true; requestAnimationFrame(stamp); } }, { passive: true });
+stamp();
+</script>
+</body></html>

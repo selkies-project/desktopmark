@@ -1,0 +1,33 @@
+{
+  "stack": "selkies",
+  "groups": { "server": "selkies server flag, --key=value" },
+  "settings": [
+    { "key": "enable-https", "value": "false", "role": "harness", "why": "plain HTTP on loopback" },
+    { "key": "enable-basic-auth", "value": "false", "role": "harness", "why": "the harness's browser signs in to nothing" },
+    { "key": "enable-dual-mode", "value": "false", "role": "harness", "why": "one transport per column" },
+    { "key": "manual-width", "value": "{w}", "role": "harness", "why": "the mode's size" },
+    { "key": "manual-height", "value": "{h}", "role": "harness", "why": "the mode's size" },
+    { "key": "enable-resize", "value": "false", "role": "harness", "why": "the desktop stays at the mode's size" },
+    { "key": "scaling-dpi", "value": "96", "role": "harness", "why": "the same DPI as every X server" },
+    { "key": "audio-enabled", "value": "false", "role": "harness", "why": "no audio in the test, for every stack" },
+    { "key": "microphone-enabled", "value": "false", "role": "harness", "why": "not under test" },
+    { "key": "gamepad-enabled", "value": "false", "role": "harness", "why": "not under test" },
+    { "key": "file-transfers", "value": "none", "role": "harness", "why": "not under test" },
+    { "key": "printing-enabled", "value": "false", "role": "harness", "why": "not under test" },
+    { "key": "enable-sharing", "value": "false", "role": "harness", "why": "not under test" },
+    { "key": "ui-show-sidebar", "value": "false", "role": "harness", "why": "the stream fills the page, as in every client" },
+    { "key": "ui-show-connection-indicator", "value": "false", "role": "harness", "why": "nothing drawn over the stream" },
+    { "key": "enable-metrics-http", "value": "false", "role": "harness", "why": "not under test" },
+
+    { "key": "encoder", "value": "h264enc", "why": "software H.264 (x264), the baseline codec" },
+    { "key": "use-cpu", "value": "true", "why": "no GPU in the baseline" },
+    { "key": "video-fullcolor", "value": "false", "why": "4:2:0, like every other stack" },
+    { "key": "rate-control-mode", "value": "cbr", "ships": "cbr", "why": "selkies' default; its congestion control only works in CBR" },
+    { "key": "congestion-control", "value": "true", "why": "adapts the bitrate to the path (the WAN section depends on it)" },
+    { "key": "video-bitrate", "value": "{ceilingKbps},{ceilingKbps/15}-{ceilingKbps}", "why": "starts at the mode's bitrate ceiling; congestion control may go down to 1/15 of it. A locked X-X range turns congestion control off" },
+    { "key": "framerate", "value": "{fps}-{fps}", "why": "locked to the mode's frame rate" },
+    { "key": "keyframe-interval", "value": "0", "ships": "0", "why": "keyframes only on demand" },
+    { "key": "video-streaming-mode", "value": "false", "why": "damage-driven encoding with paint-over, not Turbo" },
+    { "key": "video-paintover-crf", "value": "16", "ships": "18", "why": "the same still-screen target as voxl's 16" }
+  ]
+}

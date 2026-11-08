@@ -1,0 +1,22 @@
+{
+  "stack": "voxl",
+  "groups": { "server": "voxl server flag, --key=value" },
+  "settings": [
+    { "key": "enable-basic-auth", "value": "false", "role": "harness", "why": "the harness's browser signs in to nothing" },
+    { "key": "audio-enabled", "value": "false", "role": "harness", "why": "no audio in the test, for every stack" },
+    { "key": "enable-resize", "value": "false", "role": "harness", "why": "the desktop stays at the mode's size" },
+    { "key": "file-transfers", "value": "none", "role": "harness", "why": "not under test" },
+
+    { "key": "framerate", "value": "{fps}", "ships": "60", "why": "the mode's frame rate, for every stack" },
+    { "key": "preset", "value": "ultrafast", "ships": "ultrafast", "why": "x264 preset" },
+    { "key": "crf", "value": "24", "ships": "24", "why": "base quality in motion" },
+    { "key": "min-kbps", "value": "2000", "ships": "2000", "why": "adaptive bitrate floor" },
+    { "key": "max-kbps", "value": "{ceilingKbps/2}", "ships": "30000", "why": "half the mode's bitrate ceiling: at one stripe the motion VBV peaks at 2× this, so the peak meets the ceiling the other stacks get" },
+    { "key": "encoder-threads", "value": "4", "ships": "min(4, cores/4)", "why": "x264 sliced threads, the same 4 as Neko's x264enc threads=4" },
+    { "key": "adaptive-threads", "value": "false", "ships": "false", "why": "a fixed thread count, no single-thread mode" },
+    { "key": "stripes", "value": "1", "ships": "1", "why": "one stream for the screen, like the other stacks" },
+    { "key": "paintover-crf", "value": "16", "ships": "16", "why": "still-screen target; selkies is set to the same 16" },
+    { "key": "paintover-burst", "value": "3", "ships": "3", "why": "frames sent at the paint-over quality" },
+    { "key": "paintover-delay-ms", "value": "150", "ships": "150", "why": "how long the screen must be still before paint-over" }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "crf": {
+    "1920x1080@60": 11,
+    "2560x1440@60": 11,
+    "3840x2160@60": 8,
+    "2560x1440@120": 8,
+    "3840x2160@120": 8,
+    "1920x1080@120": 8
+  },
+  "sweep": {
+    "1920x1080@60": [
+      {
+        "crf": 8,
+        "p95Mbps": 17.68,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 11,
+        "p95Mbps": 15.91,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 14,
+        "p95Mbps": 14.54,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 17,
+        "p95Mbps": 12.69,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 20,
+        "p95Mbps": 11.26,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 23,
+        "p95Mbps": 10.17,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 26,
+        "p95Mbps": 9.12,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 29,
+        "p95Mbps": 8,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 32,
+        "p95Mbps": 7.17,
+        "ceilingMbps": 16.9
+      },
+      {
+        "crf": 35,
+        "p95Mbps": 6.21,
+        "ceilingMbps": 16.9
+      }
+    ],
+    "2560x1440@60": [
+      {
+        "crf": 8,
+        "p95Mbps": 30.34,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 11,
+        "p95Mbps": 24.2,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 14,
+        "p95Mbps": 18.67,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 17,
+        "p95Mbps": 21.41,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 20,
+        "p95Mbps": 16.8,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 23,
+        "p95Mbps": 14,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 26,
+        "p95Mbps": 12.83,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 29,
+        "p95Mbps": 10.96,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 32,
+        "p95Mbps": 9.47,
+        "ceilingMbps": 30
+      },
+      {
+        "crf": 35,
+        "p95Mbps": 8.32,
+        "ceilingMbps": 30
+      }
+    ],
+    "3840x2160@60": [
+      {
+        "crf": 8,
+        "p95Mbps": 27.6,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 11,
+        "p95Mbps": 26.81,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 14,
+        "p95Mbps": 21.26,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 17,
+        "p95Mbps": 19.46,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 20,
+        "p95Mbps": 16.63,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 23,
+        "p95Mbps": 14.84,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 26,
+        "p95Mbps": 12.14,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 29,
+        "p95Mbps": 11.62,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 32,
+        "p95Mbps": 10.45,
+        "ceilingMbps": 67.5
+      },
+      {
+        "crf": 35,
+        "p95Mbps": 9.62,
+        "ceilingMbps": 67.5
+      }
+    ],
+    "2560x1440@120": [
+      {
+        "crf": 8,
+        "p95Mbps": 18.45,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 11,
+        "p95Mbps": 16.78,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 14,
+        "p95Mbps": 14.96,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 17,
+        "p95Mbps": 13.16,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 20,
+        "p95Mbps": 11.83,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 23,
+        "p95Mbps": 10.41,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 26,
+        "p95Mbps": 9.3,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 29,
+        "p95Mbps": 8.25,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 32,
+        "p95Mbps": 7.25,
+        "ceilingMbps": 45
+      },
+      {
+        "crf": 35,
+        "p95Mbps": 6.34,
+        "ceilingMbps": 45
+      }
+    ],
+    "3840x2160@120": [
+      {
+        "crf": 8,
+        "p95Mbps": 20.64,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 11,
+        "p95Mbps": 16.92,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 14,
+        "p95Mbps": 14.11,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 17,
+        "p95Mbps": 15.43,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 20,
+        "p95Mbps": 13.34,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 23,
+        "p95Mbps": 13.36,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 26,
+        "p95Mbps": 12.18,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 29,
+        "p95Mbps": 9.38,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 32,
+        "p95Mbps": 8.75,
+        "ceilingMbps": 101.3
+      },
+      {
+        "crf": 35,
+        "p95Mbps": 7.04,
+        "ceilingMbps": 101.3
+      }
+    ],
+    "1920x1080@120": [
+      {
+        "crf": 8,
+        "p95Mbps": 16.67,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 11,
+        "p95Mbps": 15.21,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 14,
+        "p95Mbps": 13.27,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 17,
+        "p95Mbps": 12.02,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 20,
+        "p95Mbps": 10.62,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 23,
+        "p95Mbps": 9.45,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 26,
+        "p95Mbps": 8.47,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 29,
+        "p95Mbps": 7.49,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 32,
+        "p95Mbps": 6.58,
+        "ceilingMbps": 25.3
+      },
+      {
+        "crf": 35,
+        "p95Mbps": 5.76,
+        "ceilingMbps": 25.3
+      }
+    ]
+  },
+  "at": "2026-11-07T03:54:18.519Z",
+  "reference": "scroll",
+  "secs": 6
+}

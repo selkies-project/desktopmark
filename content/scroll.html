@@ -1,0 +1,60 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>dm-scroll</title>
+<style>
+  html, body { margin: 0; background: #fbfbf8; font: 15px/1.45 "DejaVu Sans", sans-serif; color: #202020; }
+  #marker { position: fixed; left: 0; top: 0; width: 160px; height: 64px; display: grid;
+            grid-template-columns: repeat(10, 16px); grid-template-rows: repeat(4, 16px); z-index: 9; }
+  #marker div { width: 16px; height: 16px; background: #000; }
+  main { padding: 80px 40px 0 40px; columns: 2; column-gap: 40px; }
+  body.keys { background: #e8e8e2; }
+  body.keys main { columns: 1; background: #fbfbf8; margin: 0 auto; box-sizing: border-box; min-height: 100vh; }
+  h2 { color: #1d4ea0; font-size: 19px; } p.r { color: #a02020; }
+</style></head>
+<body>
+<div id="marker"></div>
+<main id="doc"></main>
+<script>
+const qs = new URLSearchParams(location.search), step = +(qs.get('step') || 8), keys = qs.get('keys') === '1';
+let running = !keys;
+const words = 'desktop stream window frame latency encoder pixel the of and a to in is that for browser render scroll text chroma motion vector packet glyph kernel buffer cursor display codec'.split(' ');
+let s = 12345, html = '';
+const rnd = () => (s = (s * 1103515245 + 12345) >>> 0) >>> 16;
+for (let i = 0; i < 1200; i++) {
+  if (i % 9 === 0) html += `<h2>Section ${i / 9 + 1}: ${words[rnd() % words.length]} ${words[rnd() % words.length]}</h2>`;
+  let p = '';
+  for (let j = 0; j < 40; j++) p += words[rnd() % words.length] + ' ';
+  html += `<p class="${i % 7 === 3 ? 'r' : ''}">${p}</p>`;
+}
+const main = document.getElementById('doc');
+main.innerHTML = html;
+if (keys) document.body.classList.add('keys');
+const cells = [];
+for (let b = 0; b < 40; b++) cells.push(document.getElementById('marker').appendChild(document.createElement('div')));
+let f = 0, dir = 1;
+function stamp() {
+  const v = (BigInt(f & 0xffff) << 24n) | BigInt(Date.now() & 0xffffff);
+  for (let b = 0; b < 40; b++) cells[b].style.background = ((v >> BigInt(b)) & 1n) ? '#fff' : '#000';
+}
+const WIDTHS = { 1: '680px', 2: '1280px', 3: 'none' };
+addEventListener('keydown', (e) => {
+  if (!keys) return;
+  if (WIDTHS[e.key]) {
+    e.preventDefault();
+    main.style.maxWidth = WIDTHS[e.key];
+    window.scrollTo(0, 0);
+    dir = 1;
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  } else if (e.key === 's') { e.preventDefault(); running = false; }
+});
+function tick() {
+  if (!running) return;
+  stamp();
+  const max = document.documentElement.scrollHeight - innerHeight;
+  if (scrollY + step * dir > max || scrollY + step * dir < 0) dir = -dir;
+  window.scrollBy(0, step * dir);
+  f++;
+  requestAnimationFrame(tick);
+}
+if (running) requestAnimationFrame(tick); else stamp();
+</script>
+</body></html>

@@ -1,0 +1,30 @@
+{
+  "stack": "neko",
+  "groups": { "env": "environment variable", "pipeline": "field of the main video pipeline (NEKO_CAPTURE_VIDEO_PIPELINES)", "x264": "x264enc property in that pipeline (gst_params)" },
+  "notes": [
+    {"kind": "defect", "text": "No real congestion control. Neko never changes its encoder bitrate. Its optional estimator (webrtc.estimator.enabled) only switches between pre-built pipelines, and only for a client that asks for auto, which the 3.2.0 web client never does. It also ignores the browser's keyframe requests, so a lost frame is only repaired by the next scheduled keyframe (1 s). On the WAN its 30 Mbit/s stream overruns the 10 Mbit/s link and the picture freezes. Hand-setting the bitrate under the link's rate was tried (2026-11-07): at 10 Mbit/s the desktop never appeared, and at 9 Mbit/s it appeared but froze (drag and full-width scroll at 0 frames/s, still text SSIM 0.19). Working below its configured bitrate needs a change in Neko itself."}
+  ],
+  "settings": [
+    { "group": "env", "key": "NEKO_DESKTOP_SCREEN", "value": "{w}x{h}@{fps}", "role": "harness", "why": "the mode" },
+    { "group": "env", "key": "NEKO_MEMBER_PROVIDER", "value": "noauth", "role": "harness", "why": "the harness's browser signs in to nothing" },
+    { "group": "env", "key": "NEKO_SESSION_IMPLICIT_HOSTING", "value": "true", "role": "harness", "why": "the viewer has control without asking" },
+    { "group": "env", "key": "NEKO_PLUGINS_ENABLED", "value": "false", "role": "harness", "why": "not under test" },
+    { "group": "env", "key": "NEKO_CAPTURE_AUDIO_PIPELINE", "value": "audiotestsrc wave=silence is-live=true ! audioconvert ! opusenc ! appsink name=appsink", "role": "harness", "why": "silence: no audio in the test, and Neko needs an audio pipeline" },
+    { "group": "env", "key": "NEKO_CAPTURE_VIDEO_CODEC", "value": "h264", "why": "software H.264, the baseline codec (without a pipeline this silently gives VP8 at 25 fps)" },
+
+    { "group": "pipeline", "key": "fps", "value": "{fps}", "why": "the mode's frame rate" },
+    { "group": "pipeline", "key": "show_pointer", "value": "false", "role": "harness", "why": "the client draws the pointer, as in every stack" },
+    { "group": "pipeline", "key": "gst_prefix", "value": "! video/x-raw,format=I420", "why": "4:2:0 into the encoder" },
+    { "group": "pipeline", "key": "gst_encoder", "value": "x264enc", "why": "software H.264 (x264)" },
+    { "group": "pipeline", "key": "gst_suffix", "value": "! video/x-h264,stream-format=byte-stream,profile=constrained-baseline", "why": "Neko's own H.264 profile" },
+
+    { "group": "x264", "key": "bitrate", "value": "{ceilingKbps}", "why": "the mode's bitrate ceiling (x264enc's default pass is ABR with VBV maxrate = bitrate)" },
+    { "group": "x264", "key": "vbv-buf-capacity", "value": "1000", "why": "VBV buffer in ms" },
+    { "group": "x264", "key": "key-int-max", "value": "{fps}", "why": "1 s GOP, Neko's shipped cadence; needed because Neko ignores the browser's keyframe requests" },
+    { "group": "x264", "key": "bframes", "value": "0", "why": "no B-frames, for latency" },
+    { "group": "x264", "key": "threads", "value": "4", "why": "Neko's own choice, the same 4 as voxl's encoder threads" },
+    { "group": "x264", "key": "byte-stream", "value": "true", "why": "Neko's own choice" },
+    { "group": "x264", "key": "tune", "value": "zerolatency", "why": "Neko's own choice" },
+    { "group": "x264", "key": "speed-preset", "value": "veryfast", "why": "Neko's own choice" }
+  ]
+}
