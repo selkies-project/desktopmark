@@ -56,7 +56,6 @@ RUN apt-get update \
 COPY --from=nix /out/ /
 COPY --from=selkies /usr/local/bin/selkies /opt/selkies/bin/selkies
 COPY --from=selkies /usr/bin/Xvfb /opt/selkies/bin/Xvfb
-COPY --from=selkies /usr/local/share/selkies /opt/selkies/share/selkies
 COPY --from=neko /usr/bin/neko /opt/neko/bin/neko
 COPY --from=neko /var/www /opt/neko/www
 COPY --from=neko /etc/neko/xorg.conf /opt/neko/xorg.conf
