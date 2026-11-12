@@ -42,6 +42,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 COPY --from=selkies /dm-packages /tmp/pkgs-selkies
 COPY --from=neko /dm-packages /tmp/pkgs-neko
 COPY --from=kasmvnc /deb/ /tmp/kasmvnc/
+# The Debian archive's state, which CI reads before the build: an archive update
+# rebuilds this layer where a build cache would hand back the last build's
+# packages. Empty in a build that does not read it.
+ARG DISTRIB_ARCHIVE=""
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       $(cat /tmp/pkgs-selkies /tmp/pkgs-neko | grep -v -E '^(libc6|libgcc-s1|libstdc\+\+6)$' | sort -u) \
