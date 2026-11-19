@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, writeFileSync, appendFileSync, readFileSync, existsSync, rmSync, readdirSync, copyFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, writeFileSync, appendFileSync, readFileSync, existsSync, rmSync, readdirSync } from 'node:fs';
 import { execFile, execFileSync, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
@@ -539,9 +539,12 @@ function mergeInto(dir, old, meta, sessions) {
   const key = (r) => `${r.stack}|${r.mode}|${r.link}`;
   const keys = new Set(sessions.map((x) => `${x.stack.id}|${x.mode.id}|${x.link}`));
   const res = join(dir, 'results.jsonl');
-  if (existsSync(res)) {
-    copyFileSync(res, join(dir, `results.jsonl.bak-${STAMP}`));
-    const lines = readFileSync(res, 'utf8').split('\n').filter(Boolean);
+  let raw = null;
+  try { raw = readFileSync(res); } catch (err) { if (err.code !== 'ENOENT') throw err; }
+  if (raw) {
+    // Written from the bytes read, the backup is the file this merge filtered.
+    writeFileSync(join(dir, `results.jsonl.bak-${STAMP}`), raw);
+    const lines = raw.toString('utf8').split('\n').filter(Boolean);
     const keep = lines.filter((l) => { try { return !keys.has(key(JSON.parse(l))); } catch { return true; } });
     writeFileSync(res, keep.map((l) => l + '\n').join(''));
     console.error(`[dm] merge: replacing ${lines.length - keep.length} records in ${dir}`);
