@@ -314,7 +314,8 @@ function configMarkdown(m) {
   let md = '## Configuration under test\n\nEvery setting the harness gives each stack (harness/settings/<stack>.json), its shipped value where known and why. ' +
     'To propose a change, give the override: `set.<stack>.<key>=<value>` (see https://desktopmark.selkies.io/settings/); a retest of the same binary needs no code change.\n\n';
   md += ov.length ? `**This run overrides:** ${ov.map((x) => `\`${x}\``).join(', ')}\n\n` : 'This run uses the settings files as they are (no overrides).\n\n';
-  const cell = (x) => String(x ?? '').replace(/\|/g, '\\|');
+  // A backslash is escaped first, so one before a pipe does not undo the pipe's escape.
+  const cell = (x) => String(x ?? '').replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
   for (const c of m.config) {
     const v = c.versions;
     md += `### ${c.col}: ${v.version || c.stack}\n\n`;
